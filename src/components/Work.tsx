@@ -3,21 +3,22 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const projects = [
   {
-    title: "Project Alpha",
+    title: "Nexus School",
     description:
-      "Fintech mobile app featuring biometric security and real-time data visualization.",
-    tags: ["React Native", "Node.js", "AWS"],
-    gradient: "from-indigo-600/20 to-purple-600/20",
+      "K-12 learning platform with guided diagnostic assessment, parent oversight, and personalized student pathways.",
+    tags: ["React", "Vite", "Supabase"],
+    image: "/projects/nexus-school-diagnostic.png",
   },
   {
-    title: "Project Nexus",
+    title: "FIQ Personal",
     description:
-      "Headless commerce platform handling 1M+ monthly sessions with sub-second load times.",
-    tags: ["Next.js", "Shopify", "Vercel"],
-    gradient: "from-purple-600/20 to-pink-600/20",
+      "Personal finance experience focused on cashflow visibility, planning, and premium dashboard UX.",
+    tags: ["React", "TypeScript", "Supabase"],
+    image: "/projects/fiq-personal-showcase.png",
   },
 ];
 
@@ -50,17 +51,15 @@ export default function Work() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="group relative rounded-2xl border border-white/10 overflow-hidden bg-white/[0.02] hover:border-[#4F46E5]/40 transition-all duration-300"
             >
-              {/* Project Image Placeholder */}
-              <div
-                className={`relative h-64 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
-              >
-                <div className="w-48 h-32 rounded-xl bg-white/10 border border-white/10 backdrop-blur-sm flex items-center justify-center">
-                  <div className="space-y-2">
-                    <div className="w-32 h-2 rounded bg-white/20" />
-                    <div className="w-24 h-2 rounded bg-white/15" />
-                    <div className="w-28 h-2 rounded bg-white/10" />
-                  </div>
-                </div>
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B10]/70 via-transparent to-[#0A0B10]/10" />
 
                 {/* Hover arrow */}
                 <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
