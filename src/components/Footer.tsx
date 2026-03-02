@@ -1,82 +1,141 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Linkedin, Github, Globe } from "lucide-react";
+import Link from "next/link";
+import { Linkedin } from "lucide-react";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "AI Automation", href: "/ai-automation" },
+  { label: "App Development", href: "/app-development" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const serviceLinks = [
+  { label: "AI Readiness Scorecard", href: "/scorecard" },
+  { label: "AI Use Case Audit", href: "/contact?interest=audit" },
+  { label: "AI OS Installation", href: "/ai-automation" },
+  { label: "Custom App Development", href: "/app-development" },
+];
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative py-28 px-6 bg-[#0A0B10]">
-      <div className="max-w-5xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-[#4F46E5] font-mono text-sm tracking-widest uppercase mb-3">
-            Let&apos;s Build
-          </p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-            Ready to turn &ldquo;What if&rdquo; into
-            <br />
-            &ldquo;What&apos;s next&rdquo;?
-          </h2>
-
-          <div className="flex flex-col items-center gap-4 mb-12">
-            <p className="text-[#9CA3AF] text-lg">
-              hello@smithinnovation.studio
-              <span className="mx-3 text-white/20">|</span>
-              Sharjah Media City, Sharjah, UAE
+    <footer className="bg-surface border-t border-divider">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Logo + description */}
+          <div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
+                <span className="text-accent-foreground font-bold text-xs">
+                  S
+                </span>
+              </div>
+              <span className="text-foreground font-bold text-xs tracking-wide uppercase leading-tight">
+                Smith
+                <br />
+                Innovation
+                <br />
+                Studio
+              </span>
+            </div>
+            <p className="text-muted text-sm leading-relaxed">
+              Custom applications and AI-native operating systems for businesses
+              that want to work better.
             </p>
           </div>
 
-          <div className="flex justify-center gap-4 mb-16">
-            <a
-              href="#"
-              className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#4F46E5]/50 transition-all"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={18} />
-            </a>
-            <a
-              href="#"
-              className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#4F46E5]/50 transition-all"
-              aria-label="GitHub"
-            >
-              <Github size={18} />
-            </a>
-            <a
-              href="#"
-              className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#4F46E5]/50 transition-all"
-              aria-label="Website"
-            >
-              <Globe size={18} />
-            </a>
+          {/* Navigation */}
+          <div>
+            <h3 className="text-foreground font-semibold text-sm mb-4">
+              Navigation
+            </h3>
+            <nav className="flex flex-col gap-2.5">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-muted hover:text-foreground text-sm transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
-        </motion.div>
 
-        {/* Decorative star */}
-        <div className="flex justify-end">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            className="text-[#9CA3AF]/40"
-          >
-            <path
-              d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"
-              fill="currentColor"
-            />
-          </svg>
+          {/* Services */}
+          <div>
+            <h3 className="text-foreground font-semibold text-sm mb-4">
+              Services
+            </h3>
+            <nav className="flex flex-col gap-2.5">
+              {serviceLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-muted hover:text-foreground text-sm transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-foreground font-semibold text-sm mb-4">
+              Contact
+            </h3>
+            <div className="flex flex-col gap-2.5 text-muted text-sm">
+              <a
+                href="mailto:hello@smithinnovation.studio"
+                className="hover:text-foreground transition-colors"
+              >
+                hello@smithinnovation.studio
+              </a>
+              <p>Dubai, UAE</p>
+              <p className="text-muted/60 text-xs">
+                Serving UK and GCC clients
+              </p>
+              <div className="flex gap-3 mt-2">
+                <a
+                  href="#"
+                  className="w-9 h-9 rounded-full border border-card-border bg-card-bg flex items-center justify-center text-muted hover:text-foreground hover:border-accent/50 transition-all"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={16} />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/5">
-          <p className="text-[#9CA3AF]/50 text-xs">
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-divider flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-muted/50 text-xs">
             &copy; {new Date().getFullYear()} Smith Innovation Studio. All
             rights reserved.
           </p>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/privacy"
+              className="text-muted/50 hover:text-muted text-xs transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/support"
+              className="text-muted/50 hover:text-muted text-xs transition-colors"
+            >
+              Support
+            </Link>
+            <Link
+              href="/scorecard"
+              className="text-accent hover:text-accent-hover text-xs font-medium transition-colors"
+            >
+              Take the AI Readiness Scorecard →
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

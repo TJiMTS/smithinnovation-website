@@ -1,21 +1,21 @@
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import Work from "@/components/Work";
-import Philosophy from "@/components/Philosophy";
-import Footer from "@/components/Footer";
+import HeroSection from "@/components/home/HeroSection";
+import ProofBar from "@/components/home/ProofBar";
+import TwoPillars from "@/components/home/TwoPillars";
+import HowItWorks from "@/components/home/HowItWorks";
+import WhySIS from "@/components/home/WhySIS";
+import SocialProof from "@/components/home/SocialProof";
+import FinalCTA from "@/components/home/FinalCTA";
 
 export default function Home() {
   return (
-    <main>
-      <Navigation />
-      <Hero />
-      <Services />
-      <Process />
-      <Work />
-      <Philosophy />
-      <Footer />
-    </main>
+    <>
+      <HeroSection />
+      <ProofBar />
+      <TwoPillars />
+      <HowItWorks />
+      <WhySIS />
+      <SocialProof />
+      <FinalCTA />
+    </>
   );
 }
