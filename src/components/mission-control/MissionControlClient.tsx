@@ -82,6 +82,11 @@ export default function MissionControlClient() {
   const [docLoading, setDocLoading] = useState(false);
 
   useEffect(() => {
+    document.body.classList.add("mission-control-mode");
+    return () => document.body.classList.remove("mission-control-mode");
+  }, []);
+
+  useEffect(() => {
     fetch("/api/mission-control")
       .then(async (response) => {
         if (!response.ok) throw new Error("Could not load mission control data.");

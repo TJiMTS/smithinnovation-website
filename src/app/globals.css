@@ -30,6 +30,16 @@ html {
   scroll-behavior: smooth;
 }
 
+body.mission-control-mode nav,
+body.mission-control-mode footer {
+  display: none !important;
+}
+
+body.mission-control-mode main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
