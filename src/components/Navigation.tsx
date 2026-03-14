@@ -17,15 +17,19 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/mission-control")) {
-    return null;
-  }
-
   useEffect(() => {
+    if (pathname?.startsWith("/mission-control")) {
+      return;
+    }
+
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
+
+  if (pathname?.startsWith("/mission-control")) {
+    return null;
+  }
 
   return (
     <nav

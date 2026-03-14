@@ -176,7 +176,7 @@ export function getCTAContent(tier: Tier) {
   return {
     headline: "Your firm has clear opportunities. Let's find the best ones.",
     body: "An AI Workflow Audit helps pinpoint the first operational workflow worth fixing, maps the handoffs around it, and gives you a practical starting plan.",
-    ctaLabel: "Book an AI Workflow Audit",
-    ctaHref: "/contact?interest=AI%20Workflow%20Audit",
+    ctaLabel: "See the AI Workflow Audit",
+    ctaHref: "/ai-workflow-audit",
   };
 }

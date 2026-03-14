@@ -54,8 +54,8 @@ const tiers = [
     price: "£3,500",
     description:
       "Two weeks. We map the first high-value workflow worth fixing and give you a practical roadmap.",
-    cta: "Book an audit",
-    href: "/contact?interest=AI%20Workflow%20Audit",
+    cta: "See the audit",
+    href: "/ai-workflow-audit",
     featured: false,
   },
   {
@@ -144,10 +144,10 @@ export default function AIAutomationPage() {
               Take the AI Readiness Scorecard
             </Link>
             <Link
-              href="/contact?interest=AI%20Workflow%20Audit"
+              href="/ai-workflow-audit"
               className="inline-flex px-8 py-4 border border-card-border hover:border-card-hover-border hover:bg-card-hover-bg text-foreground font-semibold rounded-full transition-all duration-200"
             >
-              Book an AI Workflow Audit
+              See the AI Workflow Audit
             </Link>
           </div>
         </div>
@@ -296,8 +296,8 @@ export default function AIAutomationPage() {
         body="Start with the AI Readiness Scorecard or book an AI Workflow Audit to identify the operational bottleneck costing your firm the most time."
         primaryCTA={{ label: "Take the Scorecard", href: "/scorecard" }}
         secondaryCTA={{
-          label: "Book an AI Workflow Audit",
-          href: "/contact?interest=AI%20Workflow%20Audit",
+          label: "See the AI Workflow Audit",
+          href: "/ai-workflow-audit",
         }}
       />
     </>

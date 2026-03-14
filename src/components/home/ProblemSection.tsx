@@ -41,8 +41,8 @@ export default function ProblemSection() {
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           label="The Problem"
-          title="If your firm feels operationally heavier than it should, this is usually why."
-          subtitle="We focus on the repeatable work that drains capacity inside UK accountancy and bookkeeping firms."
+          title="If your firm feels operationally heavier than it should, this is why."
+          subtitle="This is the repeatable operational drag we see most often inside growing UK accountancy and bookkeeping firms."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-5">

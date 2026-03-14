@@ -15,11 +15,11 @@ const serviceLinks = [
   { label: "AI Readiness Scorecard", href: "/scorecard" },
   {
     label: "AI Workflow Audit",
-    href: "/contact?interest=AI%20Workflow%20Audit",
+    href: "/ai-workflow-audit",
   },
   {
     label: "Client Email Intelligence",
-    href: "/contact?interest=Client%20Email%20Intelligence",
+    href: "/client-email-intelligence",
   },
   {
     label: "AI Admin & Compliance Workflows",

@@ -131,8 +131,8 @@ export default function AboutPage() {
         body="If you run a UK accountancy or bookkeeping firm and want to reduce admin or improve client response quality, start with the scorecard or book an audit."
         primaryCTA={{ label: "Take the Scorecard", href: "/scorecard" }}
         secondaryCTA={{
-          label: "Book an AI Workflow Audit",
-          href: "/contact?interest=AI%20Workflow%20Audit",
+          label: "See the AI Workflow Audit",
+          href: "/ai-workflow-audit",
         }}
       />
     </>

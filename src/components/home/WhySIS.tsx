@@ -31,7 +31,7 @@ export default function WhySIS() {
         <SectionHeader
           label="Why SIS"
           title="Why firms choose SIS"
-          subtitle="The positioning is narrow on purpose: real operations, careful automation, and a clear first workflow."
+          subtitle="Firms trust SIS because the proof comes from live operations, not generic AI demos or software resale."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">

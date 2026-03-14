@@ -12,6 +12,7 @@ const navItems = [
   { href: "/mission-control/projects", label: "Projects" },
   { href: "/mission-control/docs", label: "Docs" },
   { href: "/mission-control/memory", label: "Memory" },
+  { href: "/mission-control/team", label: "Team" },
 ];
 
 export default function MissionControlShell({

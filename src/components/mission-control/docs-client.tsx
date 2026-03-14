@@ -17,22 +17,40 @@ export default function DocsClient({ docs }: { docs: DocumentEntry[] }) {
   const [docQuery, setDocQuery] = useState("");
   const [selectedDoc, setSelectedDoc] = useState<string | null>(docs[0]?.name ?? null);
   const [docContent, setDocContent] = useState("");
-  const [docLoading, setDocLoading] = useState(false);
+  const [docLoading, setDocLoading] = useState(Boolean(docs[0]?.name));
 
   const filteredDocs = docs.filter((doc) => doc.name.toLowerCase().includes(docQuery.trim().toLowerCase()));
 
   useEffect(() => {
     if (!selectedDoc) return;
-    setDocLoading(true);
+    let cancelled = false;
+
     fetch(`/api/mission-control/doc?name=${encodeURIComponent(selectedDoc)}`)
       .then(async (response) => {
         if (!response.ok) throw new Error("Could not load document preview.");
         const payload = (await response.json()) as { content: string };
+        if (cancelled) return;
         setDocContent(payload.content);
       })
-      .catch((err: Error) => setDocContent(`Failed to load document: ${err.message}`))
-      .finally(() => setDocLoading(false));
+      .catch((err: Error) => {
+        if (cancelled) return;
+        setDocContent(`Failed to load document: ${err.message}`);
+      })
+      .finally(() => {
+        if (cancelled) return;
+        setDocLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [selectedDoc]);
+
+  function handleSelectDoc(name: string) {
+    if (name === selectedDoc) return;
+    setDocLoading(true);
+    setSelectedDoc(name);
+  }
 
   return (
     <section className="rounded-[28px] border border-white/10 bg-white/5 p-6">
@@ -46,7 +64,7 @@ export default function DocsClient({ docs }: { docs: DocumentEntry[] }) {
       <div className="mt-6 grid gap-4 xl:grid-cols-[380px_1fr]">
         <div className="max-h-[680px] space-y-3 overflow-auto pr-1">
           {filteredDocs.map((doc) => (
-            <button key={doc.name} onClick={() => setSelectedDoc(doc.name)} className={`w-full rounded-[22px] border p-4 text-left transition ${selectedDoc === doc.name ? "border-amber-400/40 bg-amber-400/10" : "border-white/8 bg-black/20 hover:border-white/20"}`}>
+            <button key={doc.name} onClick={() => handleSelectDoc(doc.name)} className={`w-full rounded-[22px] border p-4 text-left transition ${selectedDoc === doc.name ? "border-amber-400/40 bg-amber-400/10" : "border-white/8 bg-black/20 hover:border-white/20"}`}>
               <p className="font-medium">{doc.name}</p>
               <div className="mt-2 flex flex-wrap gap-3 text-xs text-white/45">
                 <span>{formatDate(doc.modifiedAt)}</span>

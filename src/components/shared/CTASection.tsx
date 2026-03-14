@@ -14,8 +14,13 @@ export default function CTASection({
   secondaryCTA,
 }: Props) {
   return (
-    <section className="py-28 px-6 bg-surface-contrast">
-      <div className="max-w-3xl mx-auto text-center">
+    <section className="relative overflow-hidden py-28 px-6 bg-surface-contrast">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,119,6,0.18),transparent_36%)]" />
+        <div className="absolute -bottom-16 left-1/2 h-48 w-[32rem] -translate-x-1/2 rounded-full bg-white/5 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-3xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-surface-contrast-text mb-6">
           {headline}
         </h2>

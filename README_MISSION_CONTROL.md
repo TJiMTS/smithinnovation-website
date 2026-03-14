@@ -9,6 +9,7 @@ A local-only dashboard with multiple pages under:
 - `/mission-control/projects`
 - `/mission-control/docs`
 - `/mission-control/memory`
+- `/mission-control/team`
 
 It reads live SIS project files from:
 

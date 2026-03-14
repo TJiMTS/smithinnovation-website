@@ -227,16 +227,6 @@ async function getHeartbeatMeta() {
   };
 }
 
-function getHeartbeatActions() {
-  return [
-    "Check SIS_KANBAN.md",
-    "Pick the highest-leverage safe task",
-    "Do the task before reporting",
-    "Update the board and add new tasks if discovered",
-    "Prefer evidence-driven progress over opinion",
-  ];
-}
-
 async function getSchedule() {
   const heartbeat = await getHeartbeatMeta();
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];

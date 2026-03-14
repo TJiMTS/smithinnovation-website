@@ -14,7 +14,7 @@ const steps = [
     title: "Audit",
     price: "Step 2",
     description:
-      "Book an AI Workflow Audit and we map the first high-value workflow worth fixing, along with the systems and handoffs around it.",
+      "Book an AI Workflow Audit and we map the first high-value workflow worth fixing, the systems around it, and the human checkpoints that keep it safe.",
   },
   {
     icon: Wrench,
@@ -25,7 +25,7 @@ const steps = [
   },
   {
     icon: TrendingUp,
-    title: "Scale",
+    title: "Expand",
     price: "Step 4",
     description:
       "If the first workflow earns its place, we extend the system into other operational bottlenecks across the firm.",
@@ -39,7 +39,7 @@ export default function HowItWorks() {
         <SectionHeader
           label="The Process"
           title="Start with one workflow. Prove the value. Expand from there."
-          subtitle="The buyer journey should feel low-risk and concrete from the first click."
+          subtitle="Low-risk by design: diagnose first, implement one workflow, and expand only when the result is proven."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
