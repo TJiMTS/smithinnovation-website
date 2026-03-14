@@ -1,6 +1,21 @@
 import MissionControlShell from "@/components/mission-control/mission-control-shell";
 
-const hierarchy = {
+type ActiveProject = {
+  name: string;
+  status: string;
+  summary: string;
+};
+
+type TeamNode = {
+  name: string;
+  role: string;
+  status: string;
+  focus: string;
+  activeProjects?: ActiveProject[];
+  children: TeamNode[];
+};
+
+const hierarchy: TeamNode = {
   name: "TJ Smith",
   role: "Owner / Final approver",
   status: "Directing company buildout",
@@ -16,39 +31,34 @@ const hierarchy = {
           name: "Zion Forge",
           role: "Developer",
           status: "Implementation lane",
-          focus: "Website implementation, scorecard refinement, feature delivery, and Codex agent coordination",
-          children: [
+          focus: "Website implementation, scorecard refinement, feature delivery, and delegated coding execution",
+          activeProjects: [
             {
-              name: "Codex Agent — Homepage Reposition",
-              role: "Implementation subagent",
+              name: "Homepage Reposition",
               status: "Running",
-              focus: "Homepage reposition implementation",
-              children: [],
+              summary: "Implement the new positioning and homepage conversion path.",
             },
             {
-              name: "Codex Agent — AI Workflow Audit Page",
-              role: "Implementation subagent",
+              name: "AI Workflow Audit Page",
               status: "Running",
-              focus: "AI Workflow Audit landing page",
-              children: [],
+              summary: "Build the focused audit landing page from the approved brief.",
             },
             {
-              name: "Codex Agent — Client Email Intelligence Page",
-              role: "Implementation subagent",
+              name: "Client Email Intelligence Page",
               status: "Running",
-              focus: "Client Email Intelligence landing page",
-              children: [],
+              summary: "Build the spearhead service page with trust-focused messaging.",
             },
           ],
+          children: [],
         },
       ],
     },
   ],
 };
 
-type TeamNode = typeof hierarchy;
-
 function NodeCard({ node, depth = 0 }: { node: TeamNode; depth?: number }) {
+  const projects = node.activeProjects ?? [];
+
   return (
     <div className="space-y-4">
       <div
@@ -67,6 +77,25 @@ function NodeCard({ node, depth = 0 }: { node: TeamNode; depth?: number }) {
         <p className="mt-4 rounded-2xl bg-white/5 px-4 py-3 text-sm leading-6 text-white/75">
           <strong className="font-medium text-white">Focus:</strong> {node.focus}
         </p>
+
+        {projects.length > 0 && (
+          <div className="mt-4 rounded-2xl border border-white/8 bg-white/5 p-4">
+            <p className="text-xs uppercase tracking-[0.25em] text-amber-300/80">Active projects</p>
+            <div className="mt-3 space-y-3">
+              {projects.map((project) => (
+                <div key={project.name} className="rounded-2xl bg-black/20 px-4 py-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm font-medium text-white">{project.name}</p>
+                    <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-emerald-100">
+                      {project.status}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm text-white/60">{project.summary}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {node.children.length > 0 && (
@@ -82,7 +111,7 @@ function NodeCard({ node, depth = 0 }: { node: TeamNode; depth?: number }) {
 
 export default function MissionControlTeamPage() {
   return (
-    <MissionControlShell title="Team" subtitle="People and agents building SIS">
+    <MissionControlShell title="Team" subtitle="People and delegated work building SIS">
       <section className="rounded-[28px] border border-white/10 bg-white/5 p-6">
         <div className="mb-6">
           <p className="text-xs uppercase tracking-[0.35em] text-amber-300/80">Hierarchy</p>
