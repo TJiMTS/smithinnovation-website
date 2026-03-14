@@ -29,7 +29,7 @@ export default function MissionControlShell({
     <div className="min-h-screen bg-[#070b11] text-white">
       <BodyMode />
       <div className="mx-auto max-w-[1600px] px-4 py-6 lg:px-6">
-        <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-3 lg:hidden">
+        <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-3 md:hidden">
           <div className="mb-3">
             <p className="text-[11px] uppercase tracking-[0.35em] text-amber-300/80">Mission Control</p>
             <h1 className="mt-2 text-xl font-semibold">SIS Ops Deck</h1>
@@ -55,7 +55,7 @@ export default function MissionControlShell({
         </div>
 
         <div className="flex gap-6">
-        <aside className="sticky top-6 hidden h-[calc(100vh-3rem)] w-72 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-5 md:block">
+        <aside className="sticky top-6 h-[calc(100vh-3rem)] w-72 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-5 max-md:hidden">
           <div className="mb-8">
             <p className="text-xs uppercase tracking-[0.35em] text-amber-300/80">Mission Control</p>
             <h1 className="mt-3 text-2xl font-semibold">SIS Ops Deck</h1>
