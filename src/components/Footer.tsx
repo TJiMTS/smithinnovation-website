@@ -39,7 +39,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-surface border-t border-divider">
+    <footer className="site-footer bg-surface border-t border-divider">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Logo + description */}

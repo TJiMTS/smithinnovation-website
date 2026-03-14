@@ -30,8 +30,8 @@ html {
   scroll-behavior: smooth;
 }
 
-body.mission-control-mode nav,
-body.mission-control-mode footer {
+body.mission-control-mode .site-navigation,
+body.mission-control-mode .site-footer {
   display: none !important;
 }
 
