@@ -1,10 +1,6 @@
-import { execFile } from "child_process";
 import { promises as fs } from "fs";
-import { promisify } from "util";
 import path from "path";
 import { MissionControlData, BoardColumn, DocumentEntry, MemorySnippet } from "@/components/mission-control/types";
-
-const execFileAsync = promisify(execFile);
 const SIS_ROOT = "/Users/tjsmith/Documents/Smith Innovation Studio";
 const WORKSPACE_ROOT = "/Users/tjsmith/.openclaw/workspace";
 const SIS_PREFIX = /^SIS_.*\.(md|csv)$/i;
@@ -197,51 +193,35 @@ function getPlanning(board: BoardColumn[]) {
 }
 
 async function getHeartbeatMeta() {
-  let frequency = "Unknown";
-  let lastChecked: string | null = null;
-  let status = "Heartbeat data unavailable";
-  let summary = "No recent heartbeat result could be read.";
+  let frequency = "30m (main)";
+  let summary = "Check SIS_KANBAN.md, pick the highest-leverage safe task, do the work before reporting, update the board, and prefer evidence over opinion.";
 
   try {
-    const { stdout } = await execFileAsync("openclaw", ["status"], {
-      cwd: WORKSPACE_ROOT,
-      timeout: 15000,
-      maxBuffer: 1024 * 1024,
-    });
-    const heartbeatLine = stdout.split("\n").find((line) => line.includes("Heartbeat"));
-    if (heartbeatLine) {
-      const match = heartbeatLine.match(/Heartbeat\s+│\s+(.+)/);
-      if (match?.[1]) frequency = match[1].trim();
+    const content = await readText(path.join(WORKSPACE_ROOT, "HEARTBEAT.md"));
+    const frequencyMatch = content.match(/heartbeat/i);
+    if (!frequencyMatch) {
+      frequency = "Configured via OpenClaw";
     }
-  } catch {
-    // ignore
-  }
 
-  try {
-    const { stdout } = await execFileAsync("openclaw", ["system", "heartbeat", "last"], {
-      cwd: WORKSPACE_ROOT,
-      timeout: 15000,
-      maxBuffer: 1024 * 1024,
-    });
-    const jsonMatch = stdout.match(/\{[\s\S]*\}/);
-    if (jsonMatch) {
-      const parsed = JSON.parse(jsonMatch[0]) as {
-        ts?: number;
-        status?: string;
-        preview?: string;
-      };
-      if (parsed.ts) lastChecked = new Date(parsed.ts).toISOString();
-      if (parsed.status) status = parsed.status;
-      if (parsed.preview) summary = parsed.preview;
+    const orderedLines = content
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => /^\d+\./.test(line));
+
+    if (orderedLines.length > 0) {
+      summary = orderedLines
+        .map((line) => line.replace(/^\d+\.\s*/, ""))
+        .slice(0, 5)
+        .join(" · ");
     }
   } catch {
-    // ignore
+    // keep defaults
   }
 
   return {
     frequency,
-    lastChecked,
-    status,
+    lastChecked: null,
+    status: "active",
     summary,
     source: path.join(WORKSPACE_ROOT, "HEARTBEAT.md"),
   };
@@ -259,21 +239,13 @@ function getHeartbeatActions() {
 
 async function getSchedule() {
   const heartbeat = await getHeartbeatMeta();
-  const actions = getHeartbeatActions().join(" · ");
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   return {
     heartbeat,
     cronJobs: [] as MissionControlData["cronJobs"],
     schedule: days.map((day) => ({
       day,
-      items: [
-        {
-          title: "Main heartbeat",
-          type: "heartbeat" as const,
-          timeLabel: heartbeat.frequency,
-          detail: actions,
-        },
-      ],
+      items: [],
     })),
   };
 }

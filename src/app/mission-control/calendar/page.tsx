@@ -1,14 +1,6 @@
 import MissionControlShell from "@/components/mission-control/mission-control-shell";
 import { getMissionControlData } from "@/lib/mission-control";
 
-function formatLastChecked(value: string | null) {
-  if (!value) return "No heartbeat result found yet";
-  return new Date(value).toLocaleString("en-GB", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
-}
-
 const palette = [
   "border-orange-500/45 bg-orange-500/14 text-orange-100",
   "border-zinc-500/45 bg-zinc-500/14 text-zinc-100",
@@ -57,10 +49,7 @@ export default async function MissionControlCalendarPage() {
               Heartbeat · {data.heartbeat.frequency.trim()}
             </div>
             <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
-              Last result · {data.heartbeat.status}
-            </div>
-            <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/70">
-              Last checked · {formatLastChecked(data.heartbeat.lastChecked)}
+              Status · {data.heartbeat.status}
             </div>
           </div>
         </div>
@@ -73,16 +62,22 @@ export default async function MissionControlCalendarPage() {
               </div>
 
               <div className="mt-3 space-y-3">
-                {day.items.map((item, index) => (
-                  <div
-                    key={`${day.day}-${item.title}-${index}`}
-                    className={`rounded-2xl border px-3 py-3 ${colorForIndex(index)}`}
-                  >
-                    <p className="truncate text-sm font-medium">{item.title}</p>
-                    <p className="mt-1 text-[11px] opacity-75">{item.timeLabel}</p>
-                    <p className="mt-2 line-clamp-3 text-[11px] leading-5 opacity-80">{item.detail}</p>
+                {day.items.length === 0 ? (
+                  <div className="rounded-2xl border border-dashed border-white/8 bg-black/10 p-3 text-[11px] text-white/35">
+                    No scheduled jobs
                   </div>
-                ))}
+                ) : (
+                  day.items.map((item, index) => (
+                    <div
+                      key={`${day.day}-${item.title}-${index}`}
+                      className={`rounded-2xl border px-3 py-3 ${colorForIndex(index)}`}
+                    >
+                      <p className="truncate text-sm font-medium">{item.title}</p>
+                      <p className="mt-1 text-[11px] opacity-75">{item.timeLabel}</p>
+                      <p className="mt-2 line-clamp-3 text-[11px] leading-5 opacity-80">{item.detail}</p>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           ))}
@@ -99,8 +94,8 @@ export default async function MissionControlCalendarPage() {
               <p className="mt-2 text-base font-medium text-white">{data.heartbeat.frequency.trim()}</p>
             </div>
             <div className="rounded-2xl bg-white/5 p-4">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">Last checker</p>
-              <p className="mt-2 text-base font-medium text-white">main session heartbeat</p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">Mode</p>
+              <p className="mt-2 text-base font-medium text-white">Always on</p>
             </div>
             <div className="rounded-2xl bg-white/5 p-4">
               <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">Source</p>
