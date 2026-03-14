@@ -1,4 +1,5 @@
 import MissionControlShell from "@/components/mission-control/mission-control-shell";
+import HeartbeatStatus from "@/components/mission-control/heartbeat-status";
 import { getMissionControlData } from "@/lib/mission-control";
 
 const palette = [
@@ -88,7 +89,7 @@ export default async function MissionControlCalendarPage() {
         <div className="rounded-[24px] border border-white/8 bg-[#11151b] p-5">
           <p className="text-xs uppercase tracking-[0.25em] text-amber-300/80">Heartbeat</p>
           <h3 className="mt-3 text-xl font-semibold text-white">What is being checked</h3>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="mt-4 grid gap-4 md:grid-cols-4">
             <div className="rounded-2xl bg-white/5 p-4">
               <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">Frequency</p>
               <p className="mt-2 text-base font-medium text-white">{data.heartbeat.frequency.trim()}</p>
@@ -97,15 +98,12 @@ export default async function MissionControlCalendarPage() {
               <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">Mode</p>
               <p className="mt-2 text-base font-medium text-white">Always on</p>
             </div>
-            <div className="rounded-2xl bg-white/5 p-4">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">Source</p>
-              <p className="mt-2 text-sm font-medium text-white/80">HEARTBEAT.md</p>
-            </div>
+            <HeartbeatStatus />
           </div>
         </div>
 
         <div className="rounded-[24px] border border-white/8 bg-[#11151b] p-5">
-          <p className="text-xs uppercase tracking-[0.25em] text-amber-300/80">Heartbeat preview</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-amber-300/80">Heartbeat routine</p>
           <pre className="mt-4 whitespace-pre-wrap rounded-[18px] bg-[#090c11] p-4 font-mono text-xs leading-6 text-white/80">
             {data.heartbeat.summary}
           </pre>
