@@ -1,68 +1,14 @@
+import { execFile } from "child_process";
 import { promises as fs } from "fs";
+import { promisify } from "util";
 import path from "path";
+import { MissionControlData, BoardColumn, DocumentEntry, MemorySnippet } from "@/components/mission-control/types";
 
+const execFileAsync = promisify(execFile);
 const SIS_ROOT = "/Users/tjsmith/Documents/Smith Innovation Studio";
 const WORKSPACE_ROOT = "/Users/tjsmith/.openclaw/workspace";
 const SIS_PREFIX = /^SIS_.*\.(md|csv)$/i;
-
 type BoardColumnKey = "backlog" | "todo" | "inProgress" | "blocked" | "done";
-
-export interface TaskCard {
-  title: string;
-  done: boolean;
-}
-
-export interface BoardColumn {
-  key: BoardColumnKey;
-  title: string;
-  tasks: TaskCard[];
-}
-
-export interface DocumentEntry {
-  name: string;
-  path: string;
-  modifiedAt: string;
-  size: number;
-}
-
-export interface MemorySnippet {
-  path: string;
-  snippet: string;
-}
-
-export interface MissionControlData {
-  mission: string;
-  board: BoardColumn[];
-  docs: DocumentEntry[];
-  projects: Array<{
-    name: string;
-    summary: string;
-    evidence: string[];
-    status: string;
-  }>;
-  team: Array<{
-    name: string;
-    role: string;
-    status: string;
-    focus: string;
-  }>;
-  planning: Array<{
-    title: string;
-    lane: string;
-    note: string;
-  }>;
-  office: Array<{
-    name: string;
-    zone: string;
-    detail: string;
-  }>;
-  memory: {
-    available: boolean;
-    checkedPaths: string[];
-    snippets: MemorySnippet[];
-    note: string;
-  };
-}
 
 function normalizeLine(line: string) {
   return line.replace(/\r/g, "").trimEnd();
@@ -140,13 +86,7 @@ export async function parseKanban(): Promise<BoardColumn[]> {
     }
   }
 
-  return [
-    columns.backlog,
-    columns.todo,
-    columns.inProgress,
-    columns.blocked,
-    columns.done,
-  ];
+  return [columns.backlog, columns.todo, columns.inProgress, columns.blocked, columns.done];
 }
 
 async function getMission() {
@@ -229,7 +169,7 @@ async function getMemory() {
         snippets.push({ path: candidate, snippet });
       }
     } catch {
-      // ignore missing files; handled below
+      // ignore
     }
   }
 
@@ -244,82 +184,107 @@ async function getMemory() {
   };
 }
 
-function getTeam() {
-  return [
-    {
-      name: "TJ Smith",
-      role: "Owner / Final approver",
-      status: "Delegated project direction",
-      focus: "Outcome quality, proof, and commercial judgement",
-    },
-    {
-      name: "Shiloh Ward",
-      role: "Operator / COO",
-      status: "Running GTM buildout",
-      focus: "Positioning, assets, page copy, systems, and execution loop",
-    },
-    {
-      name: "Developer",
-      role: "Implementation partner",
-      status: "Waiting on / processing markdown briefs",
-      focus: "Homepage, offer pages, scorecard refinement, and local app implementation",
-    },
-  ];
-}
-
 function getPlanning(board: BoardColumn[]) {
   const todo = board.find((column) => column.key === "todo")?.tasks ?? [];
   const inProgress = board.find((column) => column.key === "inProgress")?.tasks ?? [];
   const blocked = board.find((column) => column.key === "blocked")?.tasks ?? [];
 
   return [
-    ...inProgress.slice(0, 3).map((task) => ({
-      title: task.title,
-      lane: "In progress",
-      note: "Already moving; keep visible.",
-    })),
-    ...todo.slice(0, 5).map((task) => ({
-      title: task.title,
-      lane: "Next up",
-      note: "Highest-value queued work from the board.",
-    })),
-    ...blocked.slice(0, 2).map((task) => ({
-      title: task.title,
-      lane: "Blocked",
-      note: "Needs input, tooling, or implementation access.",
-    })),
+    ...inProgress.slice(0, 3).map((task) => ({ title: task.title, lane: "In progress", note: "Already moving; keep visible." })),
+    ...todo.slice(0, 5).map((task) => ({ title: task.title, lane: "Next up", note: "Highest-value queued work from the board." })),
+    ...blocked.slice(0, 2).map((task) => ({ title: task.title, lane: "Blocked", note: "Needs input, tooling, or implementation access." })),
   ];
 }
 
-function getOffice(board: BoardColumn[]) {
-  const todoCount = board.find((column) => column.key === "todo")?.tasks.length ?? 0;
-  const blockedCount = board.find((column) => column.key === "blocked")?.tasks.length ?? 0;
+async function getHeartbeatMeta() {
+  let frequency = "Unknown";
+  let lastChecked: string | null = null;
+  let status = "Heartbeat data unavailable";
+  let summary = "No recent heartbeat result could be read.";
 
+  try {
+    const { stdout } = await execFileAsync("openclaw", ["status"], {
+      cwd: WORKSPACE_ROOT,
+      timeout: 15000,
+      maxBuffer: 1024 * 1024,
+    });
+    const heartbeatLine = stdout.split("\n").find((line) => line.includes("Heartbeat"));
+    if (heartbeatLine) {
+      const match = heartbeatLine.match(/Heartbeat\s+│\s+(.+)/);
+      if (match?.[1]) frequency = match[1].trim();
+    }
+  } catch {
+    // ignore
+  }
+
+  try {
+    const { stdout } = await execFileAsync("openclaw", ["system", "heartbeat", "last"], {
+      cwd: WORKSPACE_ROOT,
+      timeout: 15000,
+      maxBuffer: 1024 * 1024,
+    });
+    const jsonMatch = stdout.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0]) as {
+        ts?: number;
+        status?: string;
+        preview?: string;
+      };
+      if (parsed.ts) lastChecked = new Date(parsed.ts).toISOString();
+      if (parsed.status) status = parsed.status;
+      if (parsed.preview) summary = parsed.preview;
+    }
+  } catch {
+    // ignore
+  }
+
+  return {
+    frequency,
+    lastChecked,
+    status,
+    summary,
+    source: path.join(WORKSPACE_ROOT, "HEARTBEAT.md"),
+  };
+}
+
+function getHeartbeatActions() {
   return [
-    {
-      name: "Shiloh",
-      zone: "Strategy desk",
-      detail: `Tracking GTM board and pushing ${todoCount} queued tasks forward.`,
-    },
-    {
-      name: "Developer lane",
-      zone: "Build station",
-      detail: "Reserved for homepage, offer-page, and scorecard implementation work.",
-    },
-    {
-      name: "Proof room",
-      zone: "Evidence wall",
-      detail: blockedCount > 0 ? `${blockedCount} blockers still visible.` : "No current proof blockers visible.",
-    },
+    "Check SIS_KANBAN.md",
+    "Pick the highest-leverage safe task",
+    "Do the task before reporting",
+    "Update the board and add new tasks if discovered",
+    "Prefer evidence-driven progress over opinion",
   ];
+}
+
+async function getSchedule() {
+  const heartbeat = await getHeartbeatMeta();
+  const actions = getHeartbeatActions().join(" · ");
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  return {
+    heartbeat,
+    cronJobs: [] as MissionControlData["cronJobs"],
+    schedule: days.map((day) => ({
+      day,
+      items: [
+        {
+          title: "Main heartbeat",
+          type: "heartbeat" as const,
+          timeLabel: heartbeat.frequency,
+          detail: actions,
+        },
+      ],
+    })),
+  };
 }
 
 export async function getMissionControlData(): Promise<MissionControlData> {
-  const [board, docs, mission, memory] = await Promise.all([
+  const [board, docs, mission, memory, scheduleMeta] = await Promise.all([
     parseKanban(),
     listSisDocs(),
     getMission(),
     getMemory(),
+    getSchedule(),
   ]);
 
   return {
@@ -327,9 +292,10 @@ export async function getMissionControlData(): Promise<MissionControlData> {
     board,
     docs,
     projects: await getProjects(board, docs),
-    team: getTeam(),
     planning: getPlanning(board),
-    office: getOffice(board),
     memory,
+    heartbeat: scheduleMeta.heartbeat,
+    schedule: scheduleMeta.schedule,
+    cronJobs: scheduleMeta.cronJobs,
   };
 }

@@ -1,9 +1,14 @@
 # Mission Control (Local SIS Dashboard)
 
 ## What it is
-A local-only dashboard at:
+A local-only dashboard with multiple pages under:
 
 `/mission-control`
+- `/mission-control/task-board`
+- `/mission-control/calendar`
+- `/mission-control/projects`
+- `/mission-control/docs`
+- `/mission-control/memory`
 
 It reads live SIS project files from:
 
@@ -11,12 +16,11 @@ It reads live SIS project files from:
 
 and turns them into a working dashboard with:
 - Task Board
-- Calendar / planning view
+- Calendar / week view
+- Heartbeat summary
 - Projects
 - Docs browser
 - Memory panel
-- Team view
-- Office view
 
 ## How to run locally
 From the website folder:
