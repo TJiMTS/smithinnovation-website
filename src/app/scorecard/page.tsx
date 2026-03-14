@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import ScorecardFlow from "@/components/scorecard/ScorecardFlow";
+import {
+  scorecardMetaDescription,
+  scorecardMetaTitle,
+} from "@/lib/scorecard-copy";
 
 export const metadata: Metadata = {
-  title: "AI Readiness Scorecard — How Ready Is Your Firm for AI?",
-  description:
-    "25 questions. 10 minutes. Find out how ready your UK accountancy or bookkeeping firm is for AI workflow systems. Free, no sales call required.",
+  title: scorecardMetaTitle,
+  description: scorecardMetaDescription,
   openGraph: {
-    title: "AI Readiness Scorecard — How Ready Is Your Firm for AI?",
-    description:
-      "25 questions. 10 minutes. Find out how ready your UK accountancy or bookkeeping firm is for AI workflow systems. Free, instant results.",
+    title: scorecardMetaTitle,
+    description: scorecardMetaDescription,
   },
 };
 

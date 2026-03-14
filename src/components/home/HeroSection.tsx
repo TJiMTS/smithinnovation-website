@@ -43,10 +43,10 @@ export default function HeroSection() {
 
           <p className="mt-6 text-lg sm:text-xl text-muted max-w-3xl mx-auto leading-relaxed">
             AI operating systems for UK accountancy and bookkeeping firms. We
-            help firms reduce admin, improve client response quality, and remove
-            repeatable operational bottlenecks across client email handling,
+            help firms reduce admin, improve client response quality, and
+            remove repeatable operational drag across client email handling,
             admin and compliance workflows, and bookkeeping review support
-            using systems already proven inside a live practice.
+            using systems already proven inside a live accountancy practice.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -54,7 +54,7 @@ export default function HeroSection() {
               href="/scorecard"
               className="px-8 py-4 bg-accent hover:bg-accent-hover text-accent-foreground font-semibold rounded-full transition-all duration-200 text-base"
             >
-              Take the AI Readiness Scorecard
+              Take the Workflow Scorecard
             </Link>
           <Link
             href="/ai-workflow-audit"
@@ -65,8 +65,8 @@ export default function HeroSection() {
           </div>
 
           <p className="mt-6 text-sm text-muted/80">
-            Built from live practice. Human-in-the-loop by design. Start with
-            one workflow, not a big-bang transformation.
+            Live-practice proof. Human-in-the-loop by design. Scorecard first,
+            audit second, build only after the first workflow is clear.
           </p>
         </div>
 

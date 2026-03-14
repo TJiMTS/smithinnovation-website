@@ -13,25 +13,26 @@ export default function ScorecardLanding({
         </div>
 
         <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-6">
-          How ready is your accountancy or bookkeeping firm for AI?
+          How ready is your firm to improve the first workflow worth automating?
         </h1>
 
         <p className="text-muted text-lg leading-relaxed mb-4">
           25 questions across 5 categories. Takes about 10 minutes. You&apos;ll
-          get an instant score, a breakdown of where AI can remove operational
-          drag, and clearer guidance on what to tackle first.
+          get a workflow readiness score, a breakdown of where manual handoffs
+          and operational drag sit, and clearer guidance on what to tackle
+          first.
         </p>
 
         <p className="text-muted/70 text-base mb-10">
-          Built for UK accountancy and bookkeeping firms. No sales call. No
-          obligation.
+          Built for UK accountancy and bookkeeping firms. Not a generic AI
+          quiz. No sales call required.
         </p>
 
         <button
           onClick={onStart}
           className="inline-flex px-8 py-4 bg-accent hover:bg-accent-hover text-accent-foreground font-semibold rounded-full transition-all duration-200 text-lg"
         >
-          Start the Scorecard
+          Start the Workflow Scorecard
         </button>
 
         <div className="mt-8 flex items-center justify-center gap-6 text-muted/50 text-sm">

@@ -40,7 +40,7 @@ export default function ResultsDisplay({ result, contactInfo }: Props) {
         {/* Score Header */}
         <div className="text-center mb-16">
           <p className="text-accent font-mono text-sm tracking-widest uppercase mb-4">
-            Your AI Readiness Score
+            Your Workflow Readiness Score
           </p>
 
           {/* Score circle */}
@@ -92,12 +92,17 @@ export default function ResultsDisplay({ result, contactInfo }: Props) {
             )}
             {result.tierLabel}
           </div>
+          <p className="mt-4 text-muted max-w-2xl mx-auto leading-relaxed">
+            This reflects how ready your firm looks to improve a repeatable
+            workflow safely and usefully, not how interested you are in AI in
+            the abstract.
+          </p>
         </div>
 
         {/* Category Breakdown */}
         <div className="mb-16">
           <h3 className="text-xl font-bold text-foreground mb-6">
-            Category Breakdown
+            Workflow Readiness Breakdown
           </h3>
           <div className="space-y-5">
             {result.categoryScores.map((cat) => (
@@ -145,7 +150,7 @@ export default function ResultsDisplay({ result, contactInfo }: Props) {
         {/* Recommendations */}
         <div className="mb-16">
           <h3 className="text-xl font-bold text-foreground mb-6">
-            Your Top Recommendations
+            Priority Recommendations
           </h3>
           <div className="space-y-4">
             {result.recommendations.map((rec, i) => (
@@ -170,7 +175,7 @@ export default function ResultsDisplay({ result, contactInfo }: Props) {
                       {rec.explanation}
                     </p>
                     <p className="text-foreground text-sm font-medium">
-                      → {rec.action}
+                      Next move: {rec.action}
                     </p>
                   </div>
                 </div>

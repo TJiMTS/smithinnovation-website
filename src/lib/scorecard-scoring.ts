@@ -88,11 +88,11 @@ function getTier(score: number): Tier {
 
 function getTierLabel(tier: Tier): string {
   const labels: Record<Tier, string> = {
-    red: "Early stage. Significant opportunity.",
-    amber: "Foundations in place. Key gaps to address.",
-    yellow: "Good progress. Ready for targeted automation.",
-    light_green: "Strong position. Ready for systematic AI adoption.",
-    green: "Advanced. Ready for a complete AI OS.",
+    red: "Early stage. Foundations need work.",
+    amber: "Some readiness. First workflow needs clearer foundations.",
+    yellow: "Good base. Ready to assess a first workflow.",
+    light_green: "Strong base. Ready to scope a first workflow.",
+    green: "Very strong base. Ready for systematic workflow automation.",
   };
   return labels[tier];
 }
@@ -110,29 +110,29 @@ function getTierColor(tier: Tier): string {
 
 const categoryExplanations: Record<string, { low: string; action: string }> = {
   process_maturity: {
-    low: "Your workflows vary depending on who does them, which makes automation harder and means quality depends on individual effort.",
+    low: "Key workflows still depend too heavily on who picks up the work, which makes improvement harder and leaves quality tied to individual effort.",
     action:
-      "Start by documenting your top 5 most repeated processes, step by step. This is the foundation everything else builds on.",
+      "Write down one repeatable workflow in detail first, step by step. Good starting candidates are client email handling, onboarding document collection, or bookkeeping review follow-up.",
   },
   data_readiness: {
-    low: "Your data is scattered across multiple systems and formats, making it difficult to extract insights or connect workflows.",
+    low: "The context needed for replies, follow-ups, and handoffs is spread across inboxes, notes, spreadsheets, and systems, which makes workflow automation unreliable.",
     action:
-      "Consolidate your key data into cloud-based systems with consistent naming and structure. Focus on client and job data first.",
+      "Choose one target workflow and map where its inputs live today. Start with client records, prior emails, open tasks, document status, and any notes staff rely on.",
   },
   team_capacity: {
-    low: "Your team is spending too much time on administrative work and manual processes, limiting their capacity for higher-value activities.",
+    low: "Skilled staff are still carrying too much repeatable admin and retrieval work, which creates clear automation potential but also raises the stakes on choosing the right first workflow.",
     action:
-      "Track how your team spends their time for two weeks. Identify the three most time-consuming repetitive tasks — those are your automation targets.",
+      "Track repeatable tasks for two weeks and rank them by frequency, pain, and risk. Prioritise the workflow that is frequent, painful, and still safe with human approval.",
   },
   technology_stack: {
-    low: "Your technology tools aren't well connected, creating manual work and data silos between systems.",
+    low: "Your tools still create too many manual handoffs and context gaps, which makes it harder to improve an end-to-end workflow cleanly.",
     action:
-      "Audit your current software stack. Identify which systems can connect via integrations and which should be replaced with cloud-based alternatives.",
+      "List the systems involved in one target workflow and note where people copy, chase, re-enter, or reconcile information. Those handoffs are the first places to tighten.",
   },
   leadership_alignment: {
-    low: "Your leadership team hasn't yet aligned on AI/automation as a strategic priority, which will slow any implementation.",
+    low: "Without a clear owner, budget path, and success measure, the first workflow will struggle to move from idea to live operational use.",
     action:
-      "Get leadership aligned with a short business case: pick one process, estimate the hours spent, and calculate what automation would save annually.",
+      "Pick one owner, one workflow, and one measurable outcome such as faster client replies, less document chasing, or less bookkeeping review time.",
   },
 };
 
@@ -158,24 +158,23 @@ function generateRecommendations(
 export function getCTAContent(tier: Tier) {
   if (tier === "red") {
     return {
-      headline: "There's work to do before automation makes sense.",
-      body: "Your firm has significant foundational gaps to address first. We've sent your results by email with specific steps you can take now to get ready. When you're further along, the scorecard will be here.",
-      ctaLabel: "Retake in 3 months",
+      headline: "Tighten the workflow foundations first.",
+      body: "Your score suggests the next best move is internal cleanup, not a paid implementation yet. We&apos;ve emailed practical steps around process, data, ownership, and workflow selection.",
+      ctaLabel: "Retake the scorecard later",
       ctaHref: "/scorecard",
     };
   }
-  if (tier === "light_green" || tier === "green") {
+  if (tier === "amber") {
     return {
-      headline: "Your firm is well positioned. Let's talk about what's next.",
-      body: "You've built strong foundations. The next step is either a targeted automation or a full AI OS installation. Let's discuss which makes sense for your firm.",
-      ctaLabel: "Talk to us",
-      ctaHref: "/contact",
+      headline: "You have enough signal to assess the first workflow properly.",
+      body: "The AI Workflow Audit helps separate weak-but-fixable foundations from the workflow that is actually worth tackling first.",
+      ctaLabel: "See the AI Workflow Audit",
+      ctaHref: "/ai-workflow-audit",
     };
   }
-  // amber or yellow — prime audit candidate
   return {
-    headline: "Your firm has clear opportunities. Let's find the best ones.",
-    body: "An AI Workflow Audit helps pinpoint the first operational workflow worth fixing, maps the handoffs around it, and gives you a practical starting plan.",
+    headline: "You look ready to move from scorecard to scoped workflow.",
+    body: "The next practical step is an AI Workflow Audit: shortlist the best workflow, confirm the controls around it, and leave with a clear brief for what should be built first.",
     ctaLabel: "See the AI Workflow Audit",
     ctaHref: "/ai-workflow-audit",
   };

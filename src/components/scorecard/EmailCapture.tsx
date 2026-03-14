@@ -15,11 +15,9 @@ const firmSizeOptions = [
 ];
 
 const sectorOptions = [
-  "Accounting",
-  "Law",
-  "Consulting",
-  "Financial Advisory",
-  "Recruitment",
+  "Accountancy",
+  "Bookkeeping",
+  "Accountancy & Bookkeeping",
   "Other",
 ];
 
@@ -57,8 +55,8 @@ export default function EmailCapture({
             Your score is ready.
           </h2>
           <p className="text-muted text-lg">
-            Enter your email to see your full results, category breakdown, and
-            personalised recommendations.
+            Enter your email to see the full score, operational breakdown, and
+            recommended next step.
           </p>
         </div>
 
