@@ -17,6 +17,10 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
+  if (pathname?.startsWith("/mission-control")) {
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);

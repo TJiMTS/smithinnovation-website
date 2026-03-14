@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Linkedin } from "lucide-react";
 
 const navLinks = [
@@ -31,6 +32,12 @@ const serviceLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/mission-control")) {
+    return null;
+  }
+
   return (
     <footer className="bg-surface border-t border-divider">
       <div className="max-w-7xl mx-auto px-6 py-16">
