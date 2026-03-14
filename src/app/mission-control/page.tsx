@@ -1,17 +1,11 @@
-"use client";
-
 import MissionControlShell from "@/components/mission-control/mission-control-shell";
-import { ErrorCard, LoadingCard, useMissionControlData } from "@/components/mission-control/data-loader";
+import { getMissionControlData } from "@/lib/mission-control";
 
-export default function MissionControlOverviewPage() {
-  const { data, error } = useMissionControlData();
+export default async function MissionControlOverviewPage() {
+  const data = await getMissionControlData();
 
   return (
     <MissionControlShell title="Overview" subtitle="Mission, pulse, and what matters now">
-      {error && <ErrorCard error={error} />}
-      {!data && !error && <LoadingCard />}
-      {data && (
-        <>
           <section className="grid gap-6 xl:grid-cols-[1.6fr_1fr]">
             <div className="rounded-[28px] border border-white/10 bg-black/20 p-6">
               <p className="text-xs uppercase tracking-[0.35em] text-amber-300/80">Mission</p>
@@ -45,8 +39,6 @@ export default function MissionControlOverviewPage() {
               </article>
             ))}
           </section>
-        </>
-      )}
     </MissionControlShell>
   );
 }

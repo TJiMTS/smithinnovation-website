@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
+import BodyMode from "@/components/mission-control/body-mode";
 
 const navItems = [
   { href: "/mission-control", label: "Overview" },
@@ -24,13 +25,9 @@ export default function MissionControlShell({
 }) {
   const pathname = usePathname();
 
-  useEffect(() => {
-    document.body.classList.add("mission-control-mode");
-    return () => document.body.classList.remove("mission-control-mode");
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#070b11] text-white">
+      <BodyMode />
       <div className="mx-auto flex max-w-[1600px] gap-6 px-4 py-6 lg:px-6">
         <aside className="sticky top-6 hidden h-[calc(100vh-3rem)] w-72 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-5 lg:block">
           <div className="mb-8">
