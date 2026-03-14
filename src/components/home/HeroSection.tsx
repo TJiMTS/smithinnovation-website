@@ -9,16 +9,21 @@ export default function HeroSection() {
       </div>
 
       <div className="relative max-w-4xl mx-auto text-center">
+        <p className="text-accent font-mono text-sm tracking-[0.28em] uppercase mb-6">
+          For UK accountancy and bookkeeping firms
+        </p>
+
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight">
           We built our firm on AI.
           <br />
           Now we build yours.
         </h1>
 
-        <p className="mt-6 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-          Custom applications and AI-native operating systems for businesses
-          that want to work better. Not a demo. Not a pitch deck. Real systems
-          running real operations.
+        <p className="mt-6 text-lg sm:text-xl text-muted max-w-3xl mx-auto leading-relaxed">
+          AI operating systems for UK accountancy and bookkeeping firms. We
+          automate repetitive operational work like client email handling, admin
+          and compliance workflows, and bookkeeping review support using
+          systems already proven inside a live practice.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -28,13 +33,18 @@ export default function HeroSection() {
           >
             Take the AI Readiness Scorecard
           </Link>
-          <a
-            href="#pillars"
-            className="text-muted hover:text-foreground text-sm transition-colors"
+          <Link
+            href="/contact?interest=AI%20Workflow%20Audit"
+            className="px-8 py-4 border border-card-border hover:border-card-hover-border hover:bg-card-hover-bg text-foreground font-semibold rounded-full transition-all duration-200 text-base"
           >
-            See what we build ↓
-          </a>
+            Book an AI Workflow Audit
+          </Link>
         </div>
+
+        <p className="mt-6 text-sm text-muted/80">
+          Human-in-the-loop systems. Built by operators. Designed for
+          detail-heavy, regulated work.
+        </p>
       </div>
     </section>
   );

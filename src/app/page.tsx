@@ -1,9 +1,9 @@
 import HeroSection from "@/components/home/HeroSection";
 import ProofBar from "@/components/home/ProofBar";
-import TwoPillars from "@/components/home/TwoPillars";
+import ProblemSection from "@/components/home/ProblemSection";
+import WorkflowOffers from "@/components/home/WorkflowOffers";
 import HowItWorks from "@/components/home/HowItWorks";
 import WhySIS from "@/components/home/WhySIS";
-import SocialProof from "@/components/home/SocialProof";
 import FinalCTA from "@/components/home/FinalCTA";
 
 export default function Home() {
@@ -11,10 +11,10 @@ export default function Home() {
     <>
       <HeroSection />
       <ProofBar />
-      <TwoPillars />
+      <ProblemSection />
+      <WorkflowOffers />
       <HowItWorks />
       <WhySIS />
-      <SocialProof />
       <FinalCTA />
     </>
   );

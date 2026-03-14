@@ -5,17 +5,29 @@ import { Linkedin } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "AI Automation", href: "/ai-automation" },
-  { label: "App Development", href: "/app-development" },
+  { label: "Workflow Systems", href: "/ai-automation" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
 const serviceLinks = [
   { label: "AI Readiness Scorecard", href: "/scorecard" },
-  { label: "AI Use Case Audit", href: "/contact?interest=audit" },
-  { label: "AI OS Installation", href: "/ai-automation" },
-  { label: "Custom App Development", href: "/app-development" },
+  {
+    label: "AI Workflow Audit",
+    href: "/contact?interest=AI%20Workflow%20Audit",
+  },
+  {
+    label: "Client Email Intelligence",
+    href: "/contact?interest=Client%20Email%20Intelligence",
+  },
+  {
+    label: "AI Admin & Compliance Workflows",
+    href: "/contact?interest=AI%20Admin%20%26%20Compliance%20Workflows",
+  },
+  {
+    label: "AI-Assisted Bookkeeping Operations",
+    href: "/contact?interest=AI-Assisted%20Bookkeeping%20Operations",
+  },
 ];
 
 export default function Footer() {
@@ -40,8 +52,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-muted text-sm leading-relaxed">
-              Custom applications and AI-native operating systems for businesses
-              that want to work better.
+              AI workflow systems for UK accountancy and bookkeeping firms.
+              Built from live operational experience inside a real practice.
             </p>
           </div>
 
@@ -95,7 +107,7 @@ export default function Footer() {
               </a>
               <p>Dubai, UAE</p>
               <p className="text-muted/60 text-xs">
-                Serving UK and GCC clients
+                Serving UK accountancy and bookkeeping firms
               </p>
               <div className="flex gap-3 mt-2">
                 <a

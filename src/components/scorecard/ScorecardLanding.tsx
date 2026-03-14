@@ -13,17 +13,18 @@ export default function ScorecardLanding({
         </div>
 
         <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-6">
-          How ready is your firm for AI?
+          How ready is your accountancy or bookkeeping firm for AI?
         </h1>
 
         <p className="text-muted text-lg leading-relaxed mb-4">
           25 questions across 5 categories. Takes about 10 minutes. You&apos;ll
-          get an instant score, a breakdown of your firm&apos;s strengths and
-          gaps, and specific recommendations for where to start.
+          get an instant score, a breakdown of where AI can remove operational
+          drag, and clearer guidance on what to tackle first.
         </p>
 
         <p className="text-muted/70 text-base mb-10">
-          No sales call. No obligation. Just a clear picture of where you stand.
+          Built for UK accountancy and bookkeeping firms. No sales call. No
+          obligation.
         </p>
 
         <button

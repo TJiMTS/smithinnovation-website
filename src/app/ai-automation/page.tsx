@@ -1,25 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Map,
-  Hammer,
-  BarChart3,
-  Layers,
-  ArrowRight,
-  ChevronDown,
-} from "lucide-react";
+import { Map, Hammer, BarChart3, Layers, ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
 import CTASection from "@/components/shared/CTASection";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 
 export const metadata: Metadata = {
-  title: "AI Automation for Professional Services Firms",
+  title: "AI Workflow Systems for UK Accountancy & Bookkeeping Firms",
   description:
-    "AI-native operating systems for accounting, law, and consulting firms. We built our firm on AI. Now we build yours. Start with a free AI Readiness Scorecard.",
+    "Human-in-the-loop AI workflow systems for UK accountancy and bookkeeping firms. Start with one workflow, prove the value, then expand.",
   openGraph: {
-    title: "AI Automation for Professional Services Firms",
+    title: "AI Workflow Systems for UK Accountancy & Bookkeeping Firms",
     description:
-      "AI-native operating systems for accounting, law, and consulting firms. We built our firm on AI. Now we build yours.",
+      "Human-in-the-loop AI workflow systems for UK accountancy and bookkeeping firms. Start with one workflow, prove the value, then expand.",
   },
 };
 
@@ -57,28 +50,28 @@ const tiers = [
     featured: false,
   },
   {
-    name: "AI Use Case Audit",
+    name: "AI Workflow Audit",
     price: "£3,500",
     description:
-      "Two weeks. Your top 5 automation opportunities. ROI projections for each. A clear roadmap.",
+      "Two weeks. We map the first high-value workflow worth fixing and give you a practical roadmap.",
     cta: "Book an audit",
-    href: "/contact?interest=audit",
+    href: "/contact?interest=AI%20Workflow%20Audit",
     featured: false,
   },
   {
-    name: "Single Workflow Automation",
+    name: "First Workflow System",
     price: "From £10,000",
     description:
-      "One high-impact automation. Working within 8 weeks. Connected to your existing systems.",
+      "One high-impact, human-supervised workflow. Working within 8 weeks. Connected to your existing systems.",
     cta: "Talk to us",
     href: "/contact",
     featured: true,
   },
   {
-    name: "AI OS Installation",
+    name: "AI Operating System Installation",
     price: "From £50,000",
     description:
-      "The complete system. 10-20 integrated workflows. 3-6 months. Your firm, running on intelligence.",
+      "A broader operational system built from proven workflow wins across the firm.",
     cta: "Talk to us",
     href: "/contact",
     featured: false,
@@ -129,22 +122,34 @@ export default function AIAutomationPage() {
       {/* Section 1: Hero */}
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground leading-tight mb-6">
-            Your firm runs on effort.
-            <br />
-            <span className="text-accent">It could run on intelligence.</span>
-          </h1>
-          <p className="text-muted text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            We build AI-native operating systems for professional services
-            firms. Not tools. Not plugins. Complete systems that handle the work
-            your team shouldn&apos;t be doing manually.
+          <p className="text-accent font-mono text-sm tracking-[0.28em] uppercase mb-6">
+            Built for UK accountancy and bookkeeping firms
           </p>
-          <Link
-            href="/scorecard"
-            className="inline-flex px-8 py-4 bg-accent hover:bg-accent-hover text-accent-foreground font-semibold rounded-full transition-all duration-200"
-          >
-            Take the AI Readiness Scorecard
-          </Link>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground leading-tight mb-6">
+            Start with the workflow
+            <br />
+            <span className="text-accent">slowing your firm down.</span>
+          </h1>
+          <p className="text-muted text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">
+            We build human-in-the-loop AI workflow systems for UK accountancy
+            and bookkeeping firms. We start with one painful operational
+            process, make it work better, then expand only when the results
+            justify it.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/scorecard"
+              className="inline-flex px-8 py-4 bg-accent hover:bg-accent-hover text-accent-foreground font-semibold rounded-full transition-all duration-200"
+            >
+              Take the AI Readiness Scorecard
+            </Link>
+            <Link
+              href="/contact?interest=AI%20Workflow%20Audit"
+              className="inline-flex px-8 py-4 border border-card-border hover:border-card-hover-border hover:bg-card-hover-bg text-foreground font-semibold rounded-full transition-all duration-200"
+            >
+              Book an AI Workflow Audit
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -153,25 +158,25 @@ export default function AIAutomationPage() {
         <div className="max-w-3xl mx-auto">
           <SectionHeader
             label="The Reality"
-            title="The 80/20 problem"
+            title="Operational drag is still eating skilled time."
             centered={false}
           />
           <div className="space-y-6 text-muted text-lg leading-relaxed -mt-8">
             <p>
-              Your team is good at what they do. But 40-60% of their time goes
-              on work that follows the same pattern every time. Client
-              onboarding. Compliance checks. Report generation. Data entry.
-              Follow-up communications.
+              In many firms, good people are still spending hours on repeatable
+              work: gathering context before replying to client emails, chasing
+              documents, following up internally, and reviewing bookkeeping work
+              that should already be more structured.
             </p>
             <p>
-              That work matters. It just doesn&apos;t need a qualified
-              professional to do it.
+              The work matters. It just should not depend so heavily on manual
+              memory, fragmented systems, and qualified staff doing the same
+              steps again and again.
             </p>
             <p className="text-foreground font-medium">
-              The firms that figure this out first don&apos;t just save money.
-              They take on more clients without hiring. They deliver faster. They
-              keep their best people because those people spend their time on
-              work worth doing.
+              The firms that fix this first do not just save time. They respond
+              faster, work more consistently, and create room for growth without
+              letting operational quality slip.
             </p>
           </div>
         </div>
@@ -182,7 +187,8 @@ export default function AIAutomationPage() {
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             label="The Approach"
-            title="How we build your AI OS"
+            title="How we build your workflow system"
+            subtitle="Start with one workflow. Prove the value. Expand from there."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {approachSteps.map((step) => (
@@ -223,7 +229,7 @@ export default function AIAutomationPage() {
             </p>
             <p className="text-surface-contrast-text font-medium">
               That system is the foundation of everything we build. When we say
-              we understand professional services operations, we mean we run one.
+              we understand accountancy operations, we mean we run one.
             </p>
           </div>
         </div>
@@ -233,8 +239,9 @@ export default function AIAutomationPage() {
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
-            label="Pricing"
+            label="Engagement Path"
             title="Start where it makes sense"
+            subtitle="Most firms begin with the scorecard or audit, then move into one high-value workflow."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {tiers.map((tier) => (
@@ -285,9 +292,13 @@ export default function AIAutomationPage() {
 
       {/* Section 7: CTA */}
       <CTASection
-        headline="Find out where your firm stands."
-        body="The AI Readiness Scorecard takes 10 minutes and costs nothing. You'll know exactly where the opportunities are before we ever have a conversation."
+        headline="Find the first workflow worth fixing."
+        body="Start with the AI Readiness Scorecard or book an AI Workflow Audit to identify the operational bottleneck costing your firm the most time."
         primaryCTA={{ label: "Take the Scorecard", href: "/scorecard" }}
+        secondaryCTA={{
+          label: "Book an AI Workflow Audit",
+          href: "/contact?interest=AI%20Workflow%20Audit",
+        }}
       />
     </>
   );

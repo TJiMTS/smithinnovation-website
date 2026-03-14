@@ -175,8 +175,8 @@ export function getCTAContent(tier: Tier) {
   // amber or yellow — prime audit candidate
   return {
     headline: "Your firm has clear opportunities. Let's find the best ones.",
-    body: "An AI Use Case Audit maps your top 5 automation opportunities with specific ROI projections. Two weeks. £3,500. You'll know exactly where to start.",
-    ctaLabel: "Book an AI Use Case Audit",
-    ctaHref: "/contact?interest=audit",
+    body: "An AI Workflow Audit helps pinpoint the first operational workflow worth fixing, maps the handoffs around it, and gives you a practical starting plan.",
+    ctaLabel: "Book an AI Workflow Audit",
+    ctaHref: "/contact?interest=AI%20Workflow%20Audit",
   };
 }

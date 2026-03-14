@@ -22,11 +22,11 @@ const siteUrl = "https://smithinnovation.studio";
 export const metadata: Metadata = {
   title: {
     default:
-      "Smith Innovation Studio — Custom Apps & AI-Native Operating Systems",
+      "Smith Innovation Studio — AI Workflow Systems for UK Accountancy & Bookkeeping Firms",
     template: "%s — Smith Innovation Studio",
   },
   description:
-    "We build custom applications and AI-native operating systems for businesses. Built by operators, not vendors. Real systems running real operations.",
+    "We build AI workflow systems for UK accountancy and bookkeeping firms. Built by operators, not vendors. Real systems shaped by live practice.",
   metadataBase: new URL(siteUrl),
   openGraph: {
     type: "website",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Smith Innovation Studio",
     title:
-      "Smith Innovation Studio — Custom Apps & AI-Native Operating Systems",
+      "Smith Innovation Studio — AI Workflow Systems for UK Accountancy & Bookkeeping Firms",
     description:
-      "We build custom applications and AI-native operating systems for businesses. Built by operators, not vendors.",
+      "We build AI workflow systems for UK accountancy and bookkeeping firms. Built by operators, not vendors.",
     images: [
       {
         url: `${siteUrl}/og-image.png`,
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Smith Innovation Studio — Custom Apps & AI-Native Operating Systems",
+      "Smith Innovation Studio — AI Workflow Systems for UK Accountancy & Bookkeeping Firms",
     description:
-      "We build custom applications and AI-native operating systems for businesses. Built by operators, not vendors.",
+      "We build AI workflow systems for UK accountancy and bookkeeping firms. Built by operators, not vendors.",
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {

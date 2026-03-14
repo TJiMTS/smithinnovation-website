@@ -1,21 +1,26 @@
-import { Building2, Hammer, BarChart3 } from "lucide-react";
+import { Building2, Hammer, BarChart3, ShieldCheck } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
 
 const reasons = [
   {
     icon: Building2,
-    title: "Operators, not vendors.",
-    body: "Most AI companies sell technology. We run a professional services firm on the systems we build. The difference shows in every decision, every edge case, every workflow.",
+    title: "Built inside a real practice.",
+    body: "We run a live accountancy practice on the same kind of systems we build, so the proof comes from real operational pressure rather than theory.",
   },
   {
     icon: Hammer,
-    title: "Builders, not integrators.",
-    body: "We write the code. Custom applications, custom automations, custom systems. Not third-party tools stitched together with API wrappers.",
+    title: "Builder mentality.",
+    body: "We design and build systems around the workflow itself. That means fewer compromises, better fit, and less dependence on generic software workarounds.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Human in the loop.",
+    body: "Judgement stays with your team where it matters. We automate the repetitive work and keep human approval visible in client-facing and risk-sensitive tasks.",
   },
   {
     icon: BarChart3,
-    title: "Evidence, not promises.",
-    body: 'No "potential ROI" projections. No "up to X% improvement" claims. Real systems running real operations. The proof exists before the sales conversation starts.',
+    title: "Comfortable in regulated work.",
+    body: "Accountancy and bookkeeping firms operate in detail-heavy environments where trust, consistency, and auditability matter. Our systems are designed with that reality in mind.",
   },
 ];
 
@@ -23,9 +28,13 @@ export default function WhySIS() {
   return (
     <section className="py-28 px-6">
       <div className="max-w-7xl mx-auto">
-        <SectionHeader label="The Difference" title="Why firms choose SIS" />
+        <SectionHeader
+          label="Why SIS"
+          title="Why firms choose SIS"
+          subtitle="The positioning is narrow on purpose: real operations, careful automation, and a clear first workflow."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
           {reasons.map((reason) => (
             <div
               key={reason.title}

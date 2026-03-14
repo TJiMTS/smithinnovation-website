@@ -7,8 +7,7 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "AI Automation", href: "/ai-automation" },
-  { label: "App Development", href: "/app-development" },
+  { label: "Workflow Systems", href: "/ai-automation" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -23,10 +22,6 @@ export default function Navigation() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   return (
     <nav
@@ -91,6 +86,7 @@ export default function Navigation() {
             <Link
               key={item.label}
               href={item.href}
+              onClick={() => setMobileOpen(false)}
               className={`block py-3 transition-colors ${
                 pathname === item.href
                   ? "text-foreground font-medium"
@@ -102,6 +98,7 @@ export default function Navigation() {
           ))}
           <Link
             href="/scorecard"
+            onClick={() => setMobileOpen(false)}
             className="inline-block mt-3 px-5 py-2.5 bg-accent text-accent-foreground text-sm font-semibold rounded-full"
           >
             Take the Scorecard

@@ -5,15 +5,26 @@ import { Send, CheckCircle } from "lucide-react";
 
 const interestOptions = [
   "AI Readiness Scorecard",
-  "AI Use Case Audit",
-  "AI Automation (general enquiry)",
-  "Custom App Development",
+  "AI Workflow Audit",
+  "Client Email Intelligence",
+  "AI Admin & Compliance Workflows",
+  "AI-Assisted Bookkeeping Operations",
   "Something else",
 ];
 
-export default function ContactForm() {
+type ContactFormProps = {
+  initialInterest?: string;
+};
+
+export default function ContactForm({
+  initialInterest = "",
+}: ContactFormProps) {
+  const safeInitialInterest = interestOptions.includes(initialInterest)
+    ? initialInterest
+    : "";
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [interest, setInterest] = useState(safeInitialInterest);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -134,6 +145,8 @@ export default function ContactForm() {
           id="interest"
           name="interest"
           required
+          value={interest}
+          onChange={(e) => setInterest(e.target.value)}
           className="w-full px-4 py-3 rounded-xl bg-card-bg border border-card-border text-foreground focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-colors appearance-none"
         >
           <option value="" className="text-muted">
@@ -159,7 +172,7 @@ export default function ContactForm() {
           name="message"
           rows={5}
           className="w-full px-4 py-3 rounded-xl bg-card-bg border border-card-border text-foreground placeholder-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-colors resize-none"
-          placeholder="What's the problem you're trying to solve? The more detail, the better our response."
+          placeholder="What is slowing the firm down right now? Client emails, admin, compliance, bookkeeping review, or something else?"
         />
       </div>
 

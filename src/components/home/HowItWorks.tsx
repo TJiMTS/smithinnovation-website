@@ -4,31 +4,31 @@ import SectionHeader from "@/components/shared/SectionHeader";
 const steps = [
   {
     icon: ClipboardCheck,
-    title: "Score",
-    price: "Free",
+    title: "Scorecard",
+    price: "Step 1",
     description:
-      "Take the AI Readiness Scorecard. 25 questions. 10 minutes. You'll know exactly where your firm stands and where the biggest opportunities are.",
+      "Take the AI Readiness Scorecard to see where repetitive work, poor response flow, and operational drag are costing your firm the most.",
   },
   {
     icon: Search,
     title: "Audit",
-    price: "£3,500",
+    price: "Step 2",
     description:
-      "We spend two weeks inside your operations. We map every process, identify the top 5 automation opportunities, and show you the ROI for each.",
+      "Book an AI Workflow Audit and we map the first high-value workflow worth fixing, along with the systems and handoffs around it.",
   },
   {
     icon: Wrench,
-    title: "Build",
-    price: "From £10,000",
+    title: "First workflow",
+    price: "Step 3",
     description:
-      "We build the highest-impact automation from the audit. One workflow. Working within 8 weeks. Connected to your existing systems.",
+      "We implement one supervised workflow, connect it to your existing tools, and prove the value in live operations before anything expands.",
   },
   {
     icon: TrendingUp,
     title: "Scale",
-    price: "From £50,000",
+    price: "Step 4",
     description:
-      "When you're ready, we build the complete AI OS. 10-20 integrated workflows. Your firm operates differently.",
+      "If the first workflow earns its place, we extend the system into other operational bottlenecks across the firm.",
   },
 ];
 
@@ -38,7 +38,8 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           label="The Process"
-          title="Start small. Scale when you're ready."
+          title="Start with one workflow. Prove the value. Expand from there."
+          subtitle="The buyer journey should feel low-risk and concrete from the first click."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

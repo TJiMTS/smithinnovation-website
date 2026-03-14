@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin, Linkedin } from "lucide-react";
 
+type ContactPageProps = {
+  searchParams?: Promise<{
+    interest?: string | string[];
+  }>;
+};
+
 export const metadata: Metadata = {
   title: "Get in Touch",
   description:
-    "Talk to us about AI automation for your firm or custom app development. We'll be honest about whether we can help.",
+    "Talk to us about AI workflow systems for your accountancy or bookkeeping firm. We will be honest about whether we can help.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const initialInterest =
+    typeof resolvedSearchParams?.interest === "string"
+      ? resolvedSearchParams.interest
+      : "";
+
   return (
     <section className="pt-32 pb-28 px-6">
       <div className="max-w-5xl mx-auto">
@@ -16,13 +28,15 @@ export default function ContactPage() {
           {/* Left: Form */}
           <div className="lg:col-span-3">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-4">
-              Let&apos;s talk about what you need.
+              Let&apos;s talk about the first workflow to fix.
             </h1>
             <p className="text-muted text-lg mb-10">
-              Tell us what you&apos;re working on. We&apos;ll respond within 1
-              working day.
+              If you run a UK accountancy or bookkeeping firm and want to reduce
+              admin, improve client response quality, or systemise repetitive
+              operational work, start here. We&apos;ll respond within 1 working
+              day.
             </p>
-            <ContactForm />
+            <ContactForm initialInterest={initialInterest} key={initialInterest} />
           </div>
 
           {/* Right: Contact info */}
@@ -52,7 +66,7 @@ export default function ContactPage() {
                   <div>
                     <p>Dubai, UAE</p>
                     <p className="text-sm text-muted/60">
-                      Serving UK and GCC clients
+                      Serving UK accountancy and bookkeeping firms
                     </p>
                   </div>
                 </div>
@@ -80,7 +94,7 @@ export default function ContactPage() {
                   >
                     AI Readiness Scorecard
                   </a>{" "}
-                  — it&apos;s free and takes 10 minutes.
+                  or book an AI Workflow Audit.
                 </p>
               </div>
             </div>

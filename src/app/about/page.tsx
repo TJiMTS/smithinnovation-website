@@ -4,13 +4,13 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import CTASection from "@/components/shared/CTASection";
 
 export const metadata: Metadata = {
-  title: "About — Built From Real Operations",
+  title: "About — Built Inside a Live Accountancy Practice",
   description:
-    "SIS started inside a professional services firm. We built the AI system that runs it. Now we build custom apps and AI operating systems for other businesses.",
+    "SIS grew out of a live accountancy practice. We now build AI workflow systems for UK accountancy and bookkeeping firms using what we learned there.",
   openGraph: {
-    title: "About Smith Innovation Studio — Built From Real Operations",
+    title: "About Smith Innovation Studio — Built Inside a Live Accountancy Practice",
     description:
-      "SIS started inside a professional services firm. We built the AI system that runs it. Now we build for others.",
+      "SIS grew out of a live accountancy practice and now builds AI workflow systems for UK accountancy and bookkeeping firms.",
   },
 };
 
@@ -44,13 +44,15 @@ export default function AboutPage() {
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground leading-tight mb-6">
-            An innovation studio that builds what businesses{" "}
-            <span className="text-accent">actually need.</span>
+            Built inside a live accountancy practice.
+            <br />
+            <span className="text-accent">Now focused on firms like yours.</span>
           </h1>
           <p className="text-muted text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-            Smith Innovation Studio started inside a professional services firm.
-            We built the technology that runs it. Then we started building for
-            others.
+            Smith Innovation Studio grew out of work inside a real firm. We now
+            help UK accountancy and bookkeeping firms reduce admin, improve
+            response quality, and automate repetitive operational work with
+            human oversight.
           </p>
         </div>
       </section>
@@ -66,7 +68,7 @@ export default function AboutPage() {
           <div className="space-y-6 text-muted text-lg leading-relaxed -mt-8">
             <p>
               SIS didn&apos;t start as a technology company. It started as a
-              question: what would happen if a professional services firm was
+              question: what would happen if an accountancy firm was
               built on AI from the ground up?
             </p>
             <p>
@@ -85,15 +87,15 @@ export default function AboutPage() {
               needs this?
             </p>
             <p>
-              The answer was clear. Professional services firms everywhere are
-              running on manual processes and disconnected tools. They know AI
-              could help. They just don&apos;t know where to start, or who to
-              trust to build it properly.
+              The answer was clear. UK accountancy and bookkeeping firms are
+              still carrying too much operational drag in client email, admin,
+              compliance, and repetitive bookkeeping work. They do not need more
+              hype. They need systems that work in the real world.
             </p>
             <p className="text-foreground font-medium">
-              That&apos;s SIS. We build custom applications and AI-native
-              operating systems. We build them because we&apos;ve already built
-              one that works.
+              That&apos;s SIS. We build AI workflow systems for firms like the
+              one that taught us what good operational automation actually
+              requires.
             </p>
           </div>
         </div>
@@ -125,9 +127,13 @@ export default function AboutPage() {
 
       {/* Section 4: CTA */}
       <CTASection
-        headline="Ready to talk?"
-        body="Whether you need an AI-native operating system for your firm or a custom application for your business, start with a conversation. We'll be honest about whether we can help."
-        primaryCTA={{ label: "Get in touch", href: "/contact" }}
+        headline="Start with one workflow."
+        body="If you run a UK accountancy or bookkeeping firm and want to reduce admin or improve client response quality, start with the scorecard or book an audit."
+        primaryCTA={{ label: "Take the Scorecard", href: "/scorecard" }}
+        secondaryCTA={{
+          label: "Book an AI Workflow Audit",
+          href: "/contact?interest=AI%20Workflow%20Audit",
+        }}
       />
     </>
   );
