@@ -55,7 +55,7 @@ export default function MissionControlShell({
         </div>
 
         <div className="flex gap-6">
-        <aside className="sticky top-6 hidden h-[calc(100vh-3rem)] w-72 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-5 lg:block">
+        <aside className="sticky top-6 hidden h-[calc(100vh-3rem)] w-72 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-5 md:block">
           <div className="mb-8">
             <p className="text-xs uppercase tracking-[0.35em] text-amber-300/80">Mission Control</p>
             <h1 className="mt-3 text-2xl font-semibold">SIS Ops Deck</h1>
