@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { DocumentEntry } from "@/components/mission-control/types";
 
 function formatDate(value: string) {
@@ -14,12 +15,22 @@ function formatBytes(bytes: number) {
 }
 
 export default function DocsClient({ docs }: { docs: DocumentEntry[] }) {
+  const searchParams = useSearchParams();
   const [docQuery, setDocQuery] = useState("");
   const [selectedDoc, setSelectedDoc] = useState<string | null>(docs[0]?.name ?? null);
   const [docContent, setDocContent] = useState("");
   const [docLoading, setDocLoading] = useState(Boolean(docs[0]?.name));
+  const requestedDoc = searchParams.get("doc");
 
   const filteredDocs = docs.filter((doc) => doc.name.toLowerCase().includes(docQuery.trim().toLowerCase()));
+
+  useEffect(() => {
+    if (!requestedDoc) return;
+    if (!docs.some((doc) => doc.name === requestedDoc)) return;
+    if (requestedDoc === selectedDoc) return;
+    setDocLoading(true);
+    setSelectedDoc(requestedDoc);
+  }, [docs, requestedDoc, selectedDoc]);
 
   useEffect(() => {
     if (!selectedDoc) return;
