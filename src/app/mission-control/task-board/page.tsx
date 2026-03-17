@@ -30,7 +30,7 @@ export default async function MissionControlTaskBoardPage() {
         <div className="mb-5 flex items-center justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-amber-300/80">Task Board</p>
-            <h2 className="mt-2 text-2xl font-semibold">Mission -> Goals -> Projects -> Tasks lives here at the task layer</h2>
+            <h2 className="mt-2 text-2xl font-semibold">Mission → Goals → Projects → Tasks lives here at the task layer</h2>
           </div>
           <p className="max-w-md text-right text-sm text-white/50">
             Now should stay tight. Next should stay short. Done is intentionally trimmed so the board stays readable.
