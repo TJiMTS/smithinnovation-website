@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "FH8JD2N7R5.studio.smith.stones"
+        ],
+        "components": [
+          {
+            "/": "/boards/join",
+            "comment": "Invite-only Stones Prayer Board links"
+          }
+        ]
+      }
+    ]
+  }
+}
